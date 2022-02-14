@@ -1,0 +1,20 @@
+{
+  "name": "node-11-12-praktinis-membership-darbas",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MariusCodeAcademy/type5-NODE-11-12-Praktinis-membership-darbas.git"
+  },
+  "keywords": [],
+  "author": "Marius K.",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MariusCodeAcademy/type5-NODE-11-12-Praktinis-membership-darbas/issues"
+  },
+  "homepage": "https://github.com/MariusCodeAcademy/type5-NODE-11-12-Praktinis-membership-darbas#readme"
+}
