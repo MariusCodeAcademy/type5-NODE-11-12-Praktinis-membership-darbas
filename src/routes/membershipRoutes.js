@@ -1,9 +1,9 @@
 const express = require('express');
 
-const router = express.Router();
+const membershipsRoutes = express.Router();
 const membershipsController = require('../controllers/membershipsController');
 
-router.get('/memberships', membershipsController.membershipsIndex);
-router.post('/memberships', membershipsController.createMembership);
+membershipsRoutes.get('/memberships', membershipsController.membershipsIndex);
+membershipsRoutes.post('/memberships', membershipsController.createMembership);
 
-module.exports = router;
+module.exports = membershipsRoutes;

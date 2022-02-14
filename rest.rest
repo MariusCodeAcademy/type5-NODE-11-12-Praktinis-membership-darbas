@@ -1,3 +1,11 @@
 ###
 
 GET http://localhost:3000/memberships
+###
+
+POST  http://localhost:3000/memberships
+Content-Type: application/json
+
+{
+  "name": "Hello"
+}
