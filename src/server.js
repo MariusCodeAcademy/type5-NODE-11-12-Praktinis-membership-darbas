@@ -14,5 +14,6 @@ app.use(express.json());
 
 // Routes
 app.use('/', membershipsRoutes);
+
 // Launch app
 app.listen(PORT, console.log(`server online on port ${PORT}`));
