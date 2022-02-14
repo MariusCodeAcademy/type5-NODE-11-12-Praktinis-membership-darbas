@@ -1,4 +1,9 @@
-const { getArrayFromDB, createDocument } = require('./dbFunctions');
+const {
+  getArrayFromDB,
+  createDocument,
+  removeDocument,
+} = require('./dbFunctions');
+
 const DB_NAME = 'cao-practice';
 const COLLECTION_NAME = 'memberships';
 
@@ -10,8 +15,14 @@ async function createMembershipDb(newMembershipData) {
 
   return createDocument(DB_NAME, COLLECTION_NAME, newMembershipData);
 }
+async function deleteDocDb(stringId) {
+  if (!stringId) throw new Error('nera stringId deleteDocDb');
+
+  return removeDocument(DB_NAME, COLLECTION_NAME, stringId);
+}
 
 module.exports = {
   getAllMembershipsDb,
   createMembershipDb,
+  deleteDocDb,
 };
