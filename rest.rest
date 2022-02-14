@@ -7,5 +7,7 @@ POST  http://localhost:3000/memberships
 Content-Type: application/json
 
 {
-  "name": "Hello"
+  "name": "Bronze",
+  "price": 2.99,
+  "description": "This is 30 days basic membership"
 }

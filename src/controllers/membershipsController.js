@@ -1,10 +1,24 @@
-const { successResponce } = require('../helpers/dbHelpers');
+const { successResponce, failResponce } = require('../helpers/dbHelpers');
+const {
+  getAllMembershipsDb,
+  createMembershipDb,
+} = require('../models/membershipModel');
 
 async function membershipsIndex(req, res) {
-  successResponce(res, 'membershipsIndex');
+  const allMbs = await getAllMembershipsDb();
+  if (allMbs === false) {
+    failResponce(res);
+    return;
+  }
+  successResponce(res, allMbs);
 }
 async function createMembership(req, res) {
-  successResponce(res, req.body);
+  const createResult = await createMembershipDb(req.body);
+  if (createResult === false) {
+    failResponce(res);
+    return;
+  }
+  successResponce(res, createResult);
 }
 
 module.exports = {
