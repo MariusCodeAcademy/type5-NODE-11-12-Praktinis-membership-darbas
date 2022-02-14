@@ -3,14 +3,14 @@ const dbClient = require('../db');
 async function getArrayFromDB(db, collection) {
   try {
     await dbClient.connect();
-    const allBooks = await dbClient
+    const dataFromDb = await dbClient
       .db(db)
       .collection(collection)
       .find()
       .toArray();
     await dbClient.close();
 
-    return allBooks;
+    return dataFromDb;
   } catch (error) {
     console.warn('getArrayFromDB function error', error);
     return false;

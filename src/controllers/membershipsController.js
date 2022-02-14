@@ -13,6 +13,7 @@ async function membershipsIndex(req, res) {
   successResponce(res, allMbs);
 }
 async function createMembership(req, res) {
+  if (!req.body) throw new Error('nepaduoti duomenys i post createMembership');
   const createResult = await createMembershipDb(req.body);
   if (createResult === false) {
     failResponce(res);
