@@ -1,13 +1,14 @@
 const { ObjectId } = require('mongodb');
 const dbClient = require('../db');
 
-async function getArrayFromDB(db, collection) {
+async function getArrayFromDB(db, collection, sort = {}, project = {}) {
   try {
     await dbClient.connect();
+    const options = { sort, project };
     const dataFromDb = await dbClient
       .db(db)
       .collection(collection)
-      .find()
+      .find({}, options)
       .toArray();
     await dbClient.close();
 

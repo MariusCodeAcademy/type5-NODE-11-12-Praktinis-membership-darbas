@@ -2,7 +2,9 @@ const { successResponce, failResponce } = require('../helpers/dbHelpers');
 const { getAllUsersDb, createUserDb } = require('../models/usersModel');
 
 async function usersIndex(req, res) {
-  const allUsers = await getAllUsersDb();
+  const { order } = req.params;
+
+  const allUsers = await getAllUsersDb(order);
   if (allUsers === false) {
     failResponce(res);
     return;
