@@ -1,5 +1,18 @@
 // get elemtns
 const membCardsContainer = document.querySelector('.cards-container');
+const newMembership = document.querySelector('.new-membership');
+const btnAdd = document.querySelector('.btn-add');
+let buttonText = 'Add Membership';
+
+btnAdd.onclick = () => {
+  buttonText = !newMembership.classList.contains('hide')
+    ? 'Add Membership'
+    : 'Show Memberships';
+  btnAdd.textContent = buttonText;
+  // console.log('showFormFlag ===', showFormFlag);
+  newMembership.classList.toggle('hide');
+  membCardsContainer.classList.toggle('hide');
+};
 
 const URL = 'http://localhost:3000/memberships';
 
@@ -42,3 +55,20 @@ membCardsContainer.addEventListener('click', async (event) => {
 });
 
 getMemberships();
+
+document.forms[0].addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const fd = new FormData(e.target);
+  const newMembershipDataJson = JSON.stringify(Object.fromEntries(fd));
+  const resp = await fetch(URL, {
+    method: 'POST',
+    headers: {
+      'content-type': 'application/json',
+    },
+    body: newMembershipDataJson,
+  });
+  const result = await resp.json();
+  if (result.success) {
+    getMemberships();
+  }
+});

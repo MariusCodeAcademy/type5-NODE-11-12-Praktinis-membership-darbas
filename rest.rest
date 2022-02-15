@@ -3,7 +3,7 @@
 GET http://localhost:3000/memberships
 ###
 
-DELETE  http://localhost:3000/memberships/620a6f2aacd04d05d26283af
+DELETE  http://localhost:3000/memberships/620bdeb4687ea3cd3ff2bbdf
 ###
 
 POST  http://localhost:3000/memberships

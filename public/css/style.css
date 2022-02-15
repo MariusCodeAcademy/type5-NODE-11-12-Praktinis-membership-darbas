@@ -45,13 +45,16 @@
 }
 /* CARD */
 .card {
+  border-radius: 5px;
   flex: 1 1 30%;
-
   background-color: #fff;
   padding: 15px 0;
   display: flex;
   flex-direction: column;
   text-align: center;
+}
+.card p {
+  min-height: 3em;
 }
 .card .hr {
   align-self: stretch;
@@ -65,4 +68,12 @@
   padding: 9px 12px;
   margin-right: 25px;
   /* border: none; */
+}
+
+.add-membership-form {
+  max-width: 300px;
+  margin: 30px auto;
+}
+.add-membership-form > * {
+  margin-bottom: 15px;
 }

@@ -15,6 +15,7 @@ async function membershipsIndex(req, res) {
 }
 async function createMembership(req, res) {
   if (!req.body) throw new Error('nepaduoti duomenys i post createMembership');
+  req.body.price = Number(req.body.price);
   const createResult = await createMembershipDb(req.body);
   if (createResult === false) {
     failResponce(res);

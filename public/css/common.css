@@ -4,6 +4,16 @@
   /* padding: 0 50px; */
 }
 
+form input,
+form textarea {
+  padding: 10px 15px;
+  width: 100%;
+}
+
+body .hide {
+  display: none;
+}
+
 @media screen and (max-width: 950px) {
   /* taisykles kurios galioja nuo 0 iki 950px */
   .container {

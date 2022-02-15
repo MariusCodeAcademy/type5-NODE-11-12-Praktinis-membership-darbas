@@ -13,6 +13,12 @@ button {
   border-color: inherit;
   font-size: 16px;
   padding: 10px 25px;
+  cursor: pointer;
+  border-radius: 3px;
+  transition: filter 0.2s;
+}
+button:hover {
+  filter: brightness(0.8);
 }
 
 body {
