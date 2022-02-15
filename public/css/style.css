@@ -1,0 +1,68 @@
+/* @import url('https://cdn.jsdelivr.net/npm/water.css@2/out/water.css'); */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css');
+@import 'reset.css';
+@import 'common.css';
+
+.main-nav {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+.main-nav .nav-link {
+  /* background-color: lightblue; */
+  display: block;
+  padding: 10px 25px;
+}
+
+.membership-main .btn {
+  background-color: dodgerblue;
+}
+.membership-main .btn.btn-add::before {
+  content: '+  ';
+}
+
+.membership-main {
+  background-color: rgb(219, 219, 219);
+  padding: 5% 0;
+}
+.membership-main .grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+}
+.membership-main .title-block {
+  grid-column: 1 / span 2;
+}
+.membership-main .btn-add {
+  align-self: center;
+}
+
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  margin-top: 30px;
+}
+/* CARD */
+.card {
+  flex: 0 1 30%;
+
+  background-color: #fff;
+  padding: 15px 0;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+.card .hr {
+  align-self: stretch;
+  height: 1px;
+  background-color: #333;
+  margin: 20px 0;
+}
+.card .btn-delete {
+  background-color: tomato;
+  align-self: flex-end;
+  padding: 9px 12px;
+  margin-right: 25px;
+  /* border: none; */
+}
