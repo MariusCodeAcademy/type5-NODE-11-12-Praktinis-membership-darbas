@@ -7,6 +7,7 @@ membershipsRoutes.get('/memberships', membershipsController.membershipsIndex);
 membershipsRoutes.post('/memberships', membershipsController.createMembership);
 membershipsRoutes.delete(
   '/memberships/:deleteId',
+  // eslint-disable-next-line comma-dangle
   membershipsController.deleteMembership
 );
 

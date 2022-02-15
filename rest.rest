@@ -14,3 +14,16 @@ Content-Type: application/json
   "price": 6.99,
   "description": "This is 90 days basic membership"
 }
+
+### 
+GET  http://localhost:3000/users
+### 
+POST  http://localhost:3000/users
+Content-Type: application/json
+
+{
+  "name": "Jill",
+  "surname": "Jillson",
+  "email": "Jill.Jillson@gmail.com",
+  "string_id": "620a5fd7f12350ec5de28435"
+}

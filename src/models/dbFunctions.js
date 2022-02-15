@@ -17,7 +17,6 @@ async function getArrayFromDB(db, collection) {
     return false;
   }
 }
-
 async function createDocument(db, collection, data) {
   try {
     await dbClient.connect();

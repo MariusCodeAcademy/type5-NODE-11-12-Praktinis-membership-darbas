@@ -3,6 +3,7 @@ require('dotenv').config();
 const express = require('express');
 const morgan = require('morgan');
 const membershipsRoutes = require('./routes/membershipRoutes');
+const usersRoutes = require('./routes/usersRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -14,6 +15,7 @@ app.use(express.json());
 
 // Routes
 app.use('/', membershipsRoutes);
+app.use('/', usersRoutes);
 
 // Launch app
 app.listen(PORT, console.log(`server online on port ${PORT}`));
