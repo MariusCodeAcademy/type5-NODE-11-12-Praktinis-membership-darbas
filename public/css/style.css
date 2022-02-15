@@ -45,7 +45,7 @@
 }
 /* CARD */
 .card {
-  flex: 0 1 30%;
+  flex: 1 1 30%;
 
   background-color: #fff;
   padding: 15px 0;

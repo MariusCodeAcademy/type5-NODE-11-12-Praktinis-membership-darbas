@@ -29,4 +29,16 @@ async function getMemberships() {
   makeCards(fetchData.data, membCardsContainer);
 }
 
+membCardsContainer.addEventListener('click', async (event) => {
+  // console.log(event.target.className);
+  if (event.target.classList.contains('btn-delete')) {
+    const membershipID = event.target.dataset.id;
+    console.log('membershipID ===', membershipID);
+    await fetch(`${URL}/${membershipID}`, {
+      method: 'DELETE',
+    });
+    getMemberships();
+  }
+});
+
 getMemberships();
