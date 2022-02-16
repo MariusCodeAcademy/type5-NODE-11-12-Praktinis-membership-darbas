@@ -18,6 +18,50 @@ async function getArrayFromDB(db, collection, sort = {}, project = {}) {
     return false;
   }
 }
+async function makeAggregateArrayFromDB(
+  db,
+  collection,
+  sort = {},
+  project = {}
+) {
+  try {
+    const pipeline = [
+      {
+        $match: {},
+      },
+      {
+        $lookup: {
+          from: 'memberships',
+          localField: 'membership_id',
+          foreignField: '_id',
+          as: 'membership',
+        },
+      },
+      {
+        $sort: sort,
+      },
+      {
+        $project: {
+          membership_id: 0,
+        },
+      },
+    ];
+
+    await dbClient.connect();
+    const options = { sort, project };
+    const dataFromDb = await dbClient
+      .db(db)
+      .collection(collection)
+      .aggregate(pipeline)
+      .toArray();
+    await dbClient.close();
+
+    return dataFromDb;
+  } catch (error) {
+    console.warn('getArrayFromDB function error', error);
+    return false;
+  }
+}
 async function createDocument(db, collection, data) {
   try {
     await dbClient.connect();
@@ -51,4 +95,5 @@ module.exports = {
   getArrayFromDB,
   createDocument,
   removeDocument,
+  makeAggregateArrayFromDB,
 };

@@ -1,12 +1,18 @@
 const { ObjectId } = require('mongodb');
-const { getArrayFromDB, createDocument } = require('./dbFunctions');
+const {
+  getArrayFromDB,
+  createDocument,
+  makeAggregateArrayFromDB,
+} = require('./dbFunctions');
 
 const DB_NAME = 'cao-practice';
 const COLLECTION_NAME = 'users';
 
 async function getAllUsersDb(order = 'asc') {
   const sortOrder = order === 'desc' ? -1 : 1;
-  return getArrayFromDB(DB_NAME, COLLECTION_NAME, { name: sortOrder });
+  return makeAggregateArrayFromDB(DB_NAME, COLLECTION_NAME, {
+    name: sortOrder,
+  });
 }
 async function createUserDb(newUserData) {
   if (!newUserData) throw new Error('nera newUserData');
