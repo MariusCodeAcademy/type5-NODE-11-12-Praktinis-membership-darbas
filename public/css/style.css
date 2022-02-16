@@ -13,6 +13,10 @@
   display: block;
   padding: 10px 25px;
 }
+.nav-link.active {
+  text-decoration: underline;
+  font-weight: bold;
+}
 
 .membership-main .btn {
   background-color: dodgerblue;
