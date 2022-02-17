@@ -28,27 +28,21 @@
 
       <div class="container cards-container">
         <article class="card">
-          <h3>$1.99 Trial</h3>
-          <p>description</p>
-          <div class="hr"></div>
-          <button class="btn btn-delete" data-id="620a5fd7f12350ec5de28435">
-            <i class="fa fa-trash" aria-hidden="true"></i>
-          </button>
+          <h3>Loading ...... </h3>
+          <p>description ......</p>
         </article>
       </div>
     </main>
     <section class="new-membership hide">
-      <form class="add-membership-form">
-        <input type="text" placeholder="name" name="name" /><br />
-        <input
-          type="number"
-          step="0.01"
-          placeholder="price"
-          name="price"
-        /><br />
-        <textarea type="text" placeholder="description" name="description">
-        </textarea
-        ><br />
+      <form class="create-user-form">
+        <input type="text" placeholder="First name" name="name" required />
+        <input type="text" placeholder="Last name" name="surname" required />
+        <input type="email" placeholder="Email" name="email" required />
+        <select name="string_id" id="membership-select">
+          <!-- <option value="2398420348023948">Trial</option> -->
+        </select>
+
+        <button id="cancel-btn" type="button">Cancel</button>
         <button type="submit">Create</button>
       </form>
     </section>

@@ -2,20 +2,37 @@
 const membCardsContainer = document.querySelector('.cards-container');
 const newMembership = document.querySelector('.new-membership');
 const btnAdd = document.querySelector('.btn-add');
+const membershipSelectEl = document.getElementById('membership-select');
 let buttonText = 'Add Users';
+btnAdd.textContent = buttonText;
 
-btnAdd.onclick = () => {
+btnAdd.onclick = toggleFormAndCards;
+
+function toggleFormAndCards() {
   buttonText = !newMembership.classList.contains('hide')
     ? 'Add Users'
-    : 'Show Userss';
+    : 'Show Users';
   btnAdd.textContent = buttonText;
   // console.log('showFormFlag ===', showFormFlag);
   newMembership.classList.toggle('hide');
   membCardsContainer.classList.toggle('hide');
-};
+}
 
 const URL = 'http://localhost:3000/users';
 
+async function getSelectOptions() {
+  const resp = await fetch('http://localhost:3000/memberships');
+  const fetchData = await resp.json();
+  console.log('fetchData ===', fetchData);
+  fetchData.data.forEach(({ _id, name }) => {
+    const optionEl = document.createElement('option');
+    optionEl.value = _id;
+    optionEl.textContent = name;
+    // console.log(optionEl);
+    membershipSelectEl.append(optionEl);
+  });
+}
+getSelectOptions();
 function makeCards(data, dest) {
   // eslint-disable-next-line no-param-reassign
   dest.innerHTML = data
@@ -32,26 +49,14 @@ function makeCards(data, dest) {
     .join('');
 }
 
-async function getMemberships() {
+async function getUsers() {
   const resp = await fetch(URL);
   const fetchData = await resp.json();
   console.log('fetchData ===', fetchData);
   makeCards(fetchData.data, membCardsContainer);
 }
 
-membCardsContainer.addEventListener('click', async (event) => {
-  // console.log(event.target.className);
-  if (event.target.classList.contains('btn-delete')) {
-    const membershipID = event.target.dataset.id;
-    console.log('membershipID ===', membershipID);
-    await fetch(`${URL}/${membershipID}`, {
-      method: 'DELETE',
-    });
-    getMemberships();
-  }
-});
-
-getMemberships();
+getUsers();
 
 document.forms[0].addEventListener('submit', async (e) => {
   e.preventDefault();
@@ -66,6 +71,7 @@ document.forms[0].addEventListener('submit', async (e) => {
   });
   const result = await resp.json();
   if (result.success) {
-    getMemberships();
+    getUsers();
+    toggleFormAndCards();
   }
 });

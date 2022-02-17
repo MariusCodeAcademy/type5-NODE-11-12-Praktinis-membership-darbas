@@ -57,9 +57,10 @@
   flex-direction: column;
   text-align: center;
 }
-.card p {
+.card.members p {
   min-height: 3em;
 }
+
 .card .hr {
   align-self: stretch;
   height: 1px;
@@ -74,10 +75,34 @@
   /* border: none; */
 }
 
-.add-membership-form {
-  max-width: 300px;
-  margin: 30px auto;
+.new-membership {
+  background-color: rgb(219, 219, 219);
+}
+
+.create-user-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.add-membership-form,
+.create-user-form {
+  padding: 30px 0;
+  max-width: 430px;
+  margin: 0 auto;
 }
 .add-membership-form > * {
   margin-bottom: 15px;
+}
+
+.create-user-form select {
+  width: 100%;
+  grid-column: 1 / span 1;
+}
+.create-user-form button[type='button'] {
+  grid-column: 1 / span 1;
+}
+
+.create-user-form button[type='submit'] {
+  background-color: dodgerblue;
 }

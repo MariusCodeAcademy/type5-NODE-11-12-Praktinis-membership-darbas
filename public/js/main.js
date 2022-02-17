@@ -3,16 +3,19 @@ const membCardsContainer = document.querySelector('.cards-container');
 const newMembership = document.querySelector('.new-membership');
 const btnAdd = document.querySelector('.btn-add');
 let buttonText = 'Add Membership';
+btnAdd.textContent = buttonText;
 
-btnAdd.onclick = () => {
+btnAdd.onclick = toggleFormAndCards;
+
+function toggleFormAndCards() {
   buttonText = !newMembership.classList.contains('hide')
-    ? 'Add Membership'
-    : 'Show Memberships';
+    ? 'Add Users'
+    : 'Show Users';
   btnAdd.textContent = buttonText;
   // console.log('showFormFlag ===', showFormFlag);
   newMembership.classList.toggle('hide');
   membCardsContainer.classList.toggle('hide');
-};
+}
 
 const URL = 'http://localhost:3000/memberships';
 
@@ -22,7 +25,7 @@ function makeCards(data, dest) {
     // eslint-disable-next-line arrow-body-style
     .map((card) => {
       return `
-      <article class="card">
+      <article class="card members">
         <h3>$${card.price.toFixed(2)} ${card.name}</h3>
         <p>${card.description}</p>
         <div class="hr"></div>
@@ -70,5 +73,6 @@ document.forms[0].addEventListener('submit', async (e) => {
   const result = await resp.json();
   if (result.success) {
     getMemberships();
+    toggleFormAndCards();
   }
 });
