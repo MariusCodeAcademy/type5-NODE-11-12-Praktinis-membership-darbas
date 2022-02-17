@@ -19,3 +19,11 @@
 4. Create User page
    GET /memberships
    POST POST /users/
+
+### aisku
+
+1. Man neaisku kaip pasiimti formos duomenis
+2. Man neaisku kaip isiusti is FE i BE formos duomenis
+3. Man neaisku kaip sukurti korteles FE
+4. Neaisku kaip sukurti memberships FE
+5. Neaisku kaip sukurti memberships BE
