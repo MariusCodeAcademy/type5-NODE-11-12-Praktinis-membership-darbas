@@ -47,8 +47,50 @@ async function removeDocument(db, collection, stringId) {
   }
 }
 
+async function getAggregatedArrayFromDB(db, collection) {
+  try {
+    await dbClient.connect();
+    const pipeline = [
+      {
+        $match: {},
+      },
+      {
+        $lookup: {
+          from: 'memberships',
+          localField: 'membership_id',
+          foreignField: '_id',
+          as: 'membership',
+        },
+      },
+      {
+        $sort: {
+          name: 1,
+          surname: 1,
+        },
+      },
+      {
+        $project: {
+          membership_id: 0,
+        },
+      },
+    ];
+    const dataFromDb = await dbClient
+      .db(db)
+      .collection(collection)
+      .aggregate(pipeline)
+      .toArray();
+    await dbClient.close();
+
+    return dataFromDb;
+  } catch (error) {
+    console.warn('getAggregatedArrayFromDB function error', error);
+    return false;
+  }
+}
+
 module.exports = {
   getArrayFromDB,
   createDocument,
   removeDocument,
+  getAggregatedArrayFromDB,
 };

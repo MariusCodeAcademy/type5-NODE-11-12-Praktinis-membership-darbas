@@ -9,7 +9,30 @@ async function usersIndex(req, res) {
     failResponce(res);
     return;
   }
-  successResponce(res, allUsers);
+  /* allUsers[0] ==
+  {
+      "_id": "620d4d8526bd1b333cb35ddf",
+      "name": "Bob",
+      "surname": "Marley",
+      "email": "bob@bob.com",
+      "membership":[
+        {
+          "_id": "620a63e5f12350ec5de28436",
+          "name": "Bronze",
+          "price": 2.99,
+          "description": "This is 30 days basic membership"
+        }
+      ]
+    },
+  */
+  const allUsersWithMembershipName = allUsers.map((userObj) => {
+    return {
+      ...userObj,
+      membership: userObj.membership[0].name,
+    };
+  });
+
+  successResponce(res, allUsersWithMembershipName);
 }
 async function createUser(req, res) {
   if (!req.body) throw new Error('nepaduoti duomenys i post createUser');
