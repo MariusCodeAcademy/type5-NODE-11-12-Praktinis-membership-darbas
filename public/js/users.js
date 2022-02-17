@@ -1,12 +1,24 @@
 // get elemtns
+const URL = 'http://localhost:3000/users';
 const membCardsContainer = document.querySelector('.cards-container');
 const newMembership = document.querySelector('.new-membership');
 const btnAdd = document.querySelector('.btn-add');
+const btnSort = document.querySelector('.btn-sort');
+const sortOrder = document.querySelector('.btn-sort span');
 const membershipSelectEl = document.getElementById('membership-select');
 let buttonText = 'Add Users';
 btnAdd.textContent = buttonText;
 
 btnAdd.onclick = toggleFormAndCards;
+btnSort.onclick = toggleSortCards;
+
+function toggleSortCards() {
+  const sort = sortOrder.textContent.toLowerCase();
+  console.log('sortOrder ===', sort);
+  getUsers(`${URL}/${sort}`);
+  if (sort === 'desc') sortOrder.textContent = 'ASC';
+  else sortOrder.textContent = 'DESC';
+}
 
 function toggleFormAndCards() {
   buttonText = !newMembership.classList.contains('hide')
@@ -17,8 +29,6 @@ function toggleFormAndCards() {
   newMembership.classList.toggle('hide');
   membCardsContainer.classList.toggle('hide');
 }
-
-const URL = 'http://localhost:3000/users';
 
 async function getSelectOptions() {
   const resp = await fetch('http://localhost:3000/memberships');
@@ -32,7 +42,9 @@ async function getSelectOptions() {
     membershipSelectEl.append(optionEl);
   });
 }
+
 getSelectOptions();
+
 function makeCards(data, dest) {
   // eslint-disable-next-line no-param-reassign
   dest.innerHTML = data
@@ -49,8 +61,8 @@ function makeCards(data, dest) {
     .join('');
 }
 
-async function getUsers() {
-  const resp = await fetch(URL);
+async function getUsers(address = URL) {
+  const resp = await fetch(address);
   const fetchData = await resp.json();
   console.log('fetchData ===', fetchData);
   makeCards(fetchData.data, membCardsContainer);

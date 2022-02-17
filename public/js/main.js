@@ -1,6 +1,7 @@
 // get elemtns
 const membCardsContainer = document.querySelector('.cards-container');
 const newMembership = document.querySelector('.new-membership');
+
 const btnAdd = document.querySelector('.btn-add');
 let buttonText = 'Add Membership';
 btnAdd.textContent = buttonText;
@@ -9,8 +10,8 @@ btnAdd.onclick = toggleFormAndCards;
 
 function toggleFormAndCards() {
   buttonText = !newMembership.classList.contains('hide')
-    ? 'Add Users'
-    : 'Show Users';
+    ? 'Add Membership'
+    : 'Show Membership';
   btnAdd.textContent = buttonText;
   // console.log('showFormFlag ===', showFormFlag);
   newMembership.classList.toggle('hide');
